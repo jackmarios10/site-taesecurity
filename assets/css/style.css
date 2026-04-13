@@ -430,6 +430,39 @@ body.active { overflow: hidden; }
 
 
 
+.hero-benefits{
+    display:block;
+    width: max-content;
+    gap:25px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+.benefit{
+    display:flex;
+    align-items:center;
+    margin: 10px;
+    gap:8px;
+    font-size:14px;
+    color:#ffffff;
+    background:rgba(255,255,255,0.08);
+    padding:8px 14px;
+    border-radius:20px;
+    backdrop-filter: blur(6px);
+}
+
+.benefit ion-icon{
+    font-size:18px;
+    color:#00e676;
+}
+
+.benefit:hover{
+    transform:translateY(-3px);
+    transition:0.3s;
+}
+
+
+
 
 /*-----------------------------------*\
   #SERVICE
