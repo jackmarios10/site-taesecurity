@@ -60,3 +60,79 @@ const activeElemOnScroll = function () {
 }
 
 addEventOnElem(window, "scroll", activeElemOnScroll);
+
+
+
+/**
+ * simulador
+ */
+
+const systems = document.querySelectorAll('input[name="system"]')
+const cameraRange = document.getElementById("cameraRange")
+const cameraValue = document.getElementById("cameraValue")
+
+const remoteAccess = document.getElementById("remoteAccess")
+const cloudStorage = document.getElementById("cloudStorage")
+
+const priceDisplay = document.getElementById("priceDisplay")
+
+const whatsappBtn = document.getElementById("whatsappQuote")
+
+function calculatePrice(){
+
+let systemPrice = 0
+
+systems.forEach(system=>{
+if(system.checked){
+systemPrice = parseInt(system.value)
+}
+})
+
+let cameras = parseInt(cameraRange.value)
+
+let total = systemPrice * cameras
+
+if(remoteAccess.checked) total += 50000
+if(cloudStorage.checked) total += 30000
+
+cameraValue.innerText = cameras + " câmeras"
+
+priceDisplay.innerText = total.toLocaleString() + " Kz"
+
+return total
+
+}
+
+document.querySelectorAll("input").forEach(el=>{
+el.addEventListener("input",calculatePrice)
+})
+
+whatsappBtn.addEventListener("click",()=>{
+
+let total = calculatePrice()
+
+let message =
+`Olá, fiz uma simulação no site da TAE Security.%0A
+Sistema: ${document.querySelector('input[name="system"]:checked').parentElement.innerText}%0A
+Câmeras: ${cameraRange.value}%0A
+Acesso remoto: ${remoteAccess.checked ? "Sim":"Não"}%0A
+Cloud: ${cloudStorage.checked ? "Sim":"Não"}%0A
+Estimativa: ${total.toLocaleString()} Kz`
+
+let phone = "244949535092"
+
+window.open(`https://wa.me/${phone}?text=${message}`)
+
+})
+
+calculatePrice()
+
+
+
+
+
+
+
+
+
+
